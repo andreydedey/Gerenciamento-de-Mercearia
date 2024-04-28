@@ -44,3 +44,6 @@ Digite: """))
                         
                         case 2:
                             categoria = Categoria(input("Digite a categoria para remover: "))
+
+                            message = categoriaController.removerCategoria(categoria)
+                            print(message)
