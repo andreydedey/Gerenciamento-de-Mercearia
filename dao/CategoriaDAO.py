@@ -7,14 +7,17 @@ class CategoriaDAO:
 
 
     @classmethod
-    def isCategoryPresent(cls, categoria: Categoria) -> bool:
+    def findCategory(cls, categoria: Categoria) -> int:
         with open(cls.arquivo, "r") as file:
             reader = csv.reader(file, delimiter=',')
+            line = 0
             for row in reader:
                 if categoria.categoria in row:
-                    return True
+                    return line
+                line += 1
         
-        return False
+        # Não encontrou categoria
+        return -1
     
 
     @classmethod

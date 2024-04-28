@@ -37,6 +37,10 @@ Digite 5 para sair
 Digite: """))
                     match option:
                         case 1:
-                            categoria = Categoria(input("Digite a categoria para cadastrar: "))
+                            categoria = Categoria(input("Digite a categoria para cadastrar: ").strip())
 
-                            categoriaController.cadastrarCategoria(categoria)
+                            message = categoriaController.cadastrarCategoria(categoria)
+                            print(message)
+                        
+                        case 2:
+                            categoria = Categoria(input("Digite a categoria para remover: "))
