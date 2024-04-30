@@ -73,6 +73,10 @@ def produto():
             case 2:
                 message = produtoController.removerProduto()
                 print(message + "\n")
+            
+            case 3:
+                message = produtoController.alterarProduto()
+                print(message + "\n")
 
             case 5:
                 break

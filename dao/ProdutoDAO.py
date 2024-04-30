@@ -49,3 +49,19 @@ class ProdutoDAO:
                     writer.writerow(row)
                 linha += 1
         
+
+    @classmethod
+    def alterProduct(cls, index, product: Produto):
+        with open(cls.ARQUIVO, "r") as file:
+            reader = csv.reader(file)
+            reader = list(reader)
+
+        with open(cls.ARQUIVO, "w", newline="") as file:
+            writer = csv.writer(file)
+            line = 0
+            for row in reader:
+                if line == index:
+                    writer.writerow([product.nome, product.preco, product.categoria.categoria])
+                else:
+                    writer.writerow(row)
+                line += 1
