@@ -1,6 +1,6 @@
-Cadastro / Alteração / Remoção de Categoria
-Cadastro / Alteração / Remoção de Produto
-Cadastro / Alteração / Remoção de Fornecedor
+!!Cadastro / Alteração / Remoção de Categoria
+!!Cadastro / Alteração / Remoção de Produto
+!!Cadastro / Alteração / Remoção de Fornecedor
 Cadastro / Alteração / Remoção de Cliente
 Cadastro / Alteração / Remoção de Funcionário
 Caixa

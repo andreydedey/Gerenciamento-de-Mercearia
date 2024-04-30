@@ -62,3 +62,11 @@ class ControllerProduto:
         
         ProdutoDAO.alterProduct(index, new_product)
         return f"\nProduto alterado com sucesso!"
+    
+
+    def listarProdutos(self):
+        produtos = ProdutoDAO.getProducts()
+        for produto in produtos:
+            print(produto)
+            
+        return f"Done!"

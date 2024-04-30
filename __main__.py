@@ -1,8 +1,10 @@
 import os
 from controllers.controllerCategoria import ControllerCategoria
 from controllers.controllerProduto import ControllerProduto
+from controllers.controllerFornecedor import ControllerFornecedor
 from models.Categoria import Categoria
 from models.Produto import Produto
+from models.Fornecedor import Fornecedor
 
 def criaArquivo(*nome):
     for i in nome:
@@ -78,8 +80,50 @@ def produto():
                 message = produtoController.alterarProduto()
                 print(message + "\n")
 
+            case 4:
+                message = produtoController.listarProdutos()
+                print(message +  "\n")
+
             case 5:
                 break
+
+
+def fornecedor():
+     while True:
+        fornecedorController = ControllerFornecedor()
+        local = int(input("Digite 1 para cadastrar Fornecedor\n"
+                    "Digite 2 para remover um Fornecedor\n"
+                    "Digite 3 para alterar um Fornecedor\n"
+                    "Digite 4 para mostrar os Fornecedores cadastrados\n"
+                    "Digite 5 para sair\n"))
+
+        match local:
+            case 1:
+                message = fornecedorController.cadastrarFornecedor()
+                print(message + "\n")
+
+            case 2:
+                message = fornecedorController.removerFornecedor()
+                print(message + "\n")
+            
+            case 3:
+                message = fornecedorController.alterarFornecedor()
+                print(message + "\n")
+            
+            case 4:
+                message = fornecedorController.listar_fornecedores()
+                print(message + "\n")
+
+            case 5:
+                break
+
+
+def estoque():
+    pass
+
+
+def cliente():
+    pass
 
 
 if __name__ == "__main__":
@@ -97,6 +141,15 @@ Digite: """))
             match local:
                 case 1:
                     categoria()
+
+                case 2:
+                    fornecedor()
+                
+                case 3:
+                    fornecedor()
+
+                case 4:
+                    cliente()
 
                 case 7:
                     produto()

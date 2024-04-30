@@ -65,3 +65,14 @@ class ProdutoDAO:
                 else:
                     writer.writerow(row)
                 line += 1
+    
+    
+    @classmethod
+    def getProducts(cls):
+        with open(cls.ARQUIVO, "r") as file:
+            reader = csv.DictReader(file)
+            products = []
+            for row in reader:
+                products.append(f"{row["Nome"]} {row["Preco"]} {row["Categoria"]}")
+
+        return products
