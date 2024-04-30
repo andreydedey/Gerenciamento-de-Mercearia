@@ -17,4 +17,21 @@ class ControllerCategoria:
             return f"categoria {categoria.categoria} removida!"
         
         return f"categoria {categoria.categoria} não existe!"
-                    
+
+
+    def alterarCategoria(self, categoria_nova: Categoria, categoria_para_alterar):
+        index = CategoriaDAO.findCategory(categoria_para_alterar)
+        if index >= 0:
+            CategoriaDAO.alterCategory(categoria_nova, index)
+            return f"categoria {categoria_para_alterar.categoria} substituída por {categoria_nova.categoria} com sucesso!"
+
+        return f"categoria {categoria_para_alterar.categoria} não existe!"
+
+
+    def listarCategorias(self):
+        categorias = CategoriaDAO.listCategorys()
+        print("Categorias cadastradas:\n")
+        for categoria in categorias:
+            print(categoria)
+        
+        return f"\nDone!"
