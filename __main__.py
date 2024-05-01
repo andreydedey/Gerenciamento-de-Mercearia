@@ -2,6 +2,7 @@ import os
 from controllers.controllerCategoria import ControllerCategoria
 from controllers.controllerProduto import ControllerProduto
 from controllers.controllerFornecedor import ControllerFornecedor
+from controllers.controllerCliente import ControllerCliente
 from models.Categoria import Categoria
 from models.Produto import Produto
 from models.Fornecedor import Fornecedor
@@ -123,7 +124,26 @@ def estoque():
 
 
 def cliente():
-    pass
+    while True:
+        clienteController = ControllerCliente()
+        local = int(input("Digite 1 para cadastrar Cliente\n"
+                        "Digite 2 para remover Cliente\n"
+                        "Digite 3 para alterar Cliente\n"
+                        "Digite 4 para listar Clientes\n"
+                        "Digite 5 para sair\n"))
+
+        match local:
+            case 1:
+                message = clienteController.cadastrarCliente()
+                print(message + "\n")
+            
+            case 2:
+                message = clienteController.removerCliente()
+                print(message + "\n")
+
+            case 5:
+                break
+
 
 
 if __name__ == "__main__":
