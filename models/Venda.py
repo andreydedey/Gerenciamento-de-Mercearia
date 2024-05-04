@@ -1,8 +1,7 @@
-from . import Produto
 from datetime import datetime
 
-class Vendas:
-    def __init__(self, itensVendido: Produto, vendedor, comprador, quantidadeVendida, data = datetime.now()):
+class Venda:
+    def __init__(self, itensVendido, vendedor, comprador, quantidadeVendida, data=datetime.now().strftime('%d/%m/%y')):
         self.itensVendido = itensVendido
         self.vendedor = vendedor
         self.comprador = comprador

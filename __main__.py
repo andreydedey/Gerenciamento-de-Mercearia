@@ -3,9 +3,12 @@ from controllers.controllerCategoria import ControllerCategoria
 from controllers.controllerProduto import ControllerProduto
 from controllers.controllerFornecedor import ControllerFornecedor
 from controllers.controllerCliente import ControllerCliente
+from controllers.controllerFuncionario import ControllerFuncionario
+from controllers.controllerEstoque import ControllerEstoque
+from controllers.controllerVenda import ControllerVenda
+from controllers.controllerRelatorio import ControllerRelatorio
 from models.Categoria import Categoria
-from models.Produto import Produto
-from models.Fornecedor import Fornecedor
+
 
 def criaArquivo(*nome):
     for i in nome:
@@ -120,7 +123,18 @@ def fornecedor():
 
 
 def estoque():
-    pass
+    controllerEstoque = ControllerEstoque()
+    while True:
+        local = int(input("1 - Ver produtos em estoque:\n"
+                          "2 - Sair:\n"))
+        
+        match local:
+            case 1:
+                message = controllerEstoque.listarProdutos()
+                print(message + "\n")
+            
+            case 2:
+                break
 
 
 def cliente():
@@ -141,9 +155,85 @@ def cliente():
                 message = clienteController.removerCliente()
                 print(message + "\n")
 
+            case 3:
+                message = clienteController.alterarCliente()
+                print(message + "\n")
+
+            case 4:
+                message = clienteController.listarClientes()
+                print(message + "\n")
+
             case 5:
                 break
 
+
+def funcionario():
+    while True:
+        funcionarioController = ControllerFuncionario()
+        local = int(input("Digite 1 para cadastrar Funcionario\n"
+                        "Digite 2 para remover Funcionario\n"
+                        "Digite 3 para alterar Funcionario\n"
+                        "Digite 4 para listar Funcionario\n"
+                        "Digite 5 para sair\n"))
+
+        match local:
+            case 1:
+                message = funcionarioController.cadastrarFuncionario()
+                print(message + "\n")
+            
+            case 2:
+                message = funcionarioController.removerFuncionario()
+                print(message + "\n")
+
+            case 3:
+                message = funcionarioController.alterarFuncionario()
+                print(message + "\n")
+
+            case 4:
+                message = funcionarioController.listarFuncionarios()
+                print(message + "\n")
+
+            case 5:
+                break
+
+
+def venda():
+    while True:
+        vendaController = ControllerVenda()
+        local = int(input("1 - realizar venda:\n"
+                        "2 - Sair\n"))
+
+        match local:
+            case 1:
+                vendaController.realizarVenda()
+
+            case 2:
+                break
+
+
+def relatorio():
+    while True:
+        relatorioController = ControllerRelatorio()
+        local = int(input("1 - Relatório Geral de Vendas:\n"
+                          "2 - Relatório de Vendas por Datas:\n"
+                          "3 - Relatório de Produtos mais Vendidos\n"
+                          "4 - Relatório de clientes que mais compraram\n"))
+        
+        match local:
+            case 1:
+                relatorioController.relatorioGeral()
+
+            case 2:
+                date = input("Enter a date in DD-MM-YYYY format:")
+                relatorioController.produtosVendidosPorData(date)
+
+            case 3:
+                print("Produtos mais vendidos em ordem\n")
+                relatorioController.produtosMaisVendidos()
+            
+            case 4:
+                relatorioController.clientesQueMaisCompraram()
+            
 
 
 if __name__ == "__main__":
@@ -156,6 +246,7 @@ Digite 4 para acessar ( Cliente )
 Digite 5 para acessar ( funcionario )
 Digite 6 para acessar ( Vendas )
 Digite 7 para acessar ( Produtos )
+Digite 8 para acessar ( Relatórios )                              
 Digite: """))
             
             match local:
@@ -163,7 +254,7 @@ Digite: """))
                     categoria()
 
                 case 2:
-                    fornecedor()
+                    estoque()
                 
                 case 3:
                     fornecedor()
@@ -171,5 +262,14 @@ Digite: """))
                 case 4:
                     cliente()
 
+                case 5:
+                    funcionario()
+
+                case 6:
+                    venda()
+
                 case 7:
                     produto()
+                
+                case 8:
+                    relatorio()

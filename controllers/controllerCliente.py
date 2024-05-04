@@ -17,9 +17,33 @@ class ControllerCliente:
     def removerCliente(self):
         cpf = int(input("Digite o cpf do cliente: "))
         index = ClienteDAO.findClient(cpf=cpf)
-        print(index)
         if index == -1:
             return f"Cliente com o cpf {cpf} não cadastrado"
         
         ClienteDAO.removeClient(index)
         return f"Cliente com o cpf {cpf} removido com sucesso"
+    
+
+    def alterarCliente(self):
+        cpf = int(input("Digite o cpf do cliente: "))
+        index = ClienteDAO.findClient(cpf=cpf)
+        if index == -1:
+            f"Cliente com o cpf {cpf} não cadastrado"
+
+        nome = input("Escreva o nome do cliente: ")
+        email = input("Escreva o email do cliente: ")
+        endereco = input("Escreve o endereço do cliente: ")
+
+        novo_cliente = Cliente(nome, cpf, email, endereco)
+
+        ClienteDAO.alterClient(index, novo_cliente)
+        return f"Cliente alterado com sucesso"
+
+
+    def listarClientes(self):
+        clientes = ClienteDAO.listClients()
+
+        for cliente in clientes:
+            print(cliente)
+        
+        return "Fim"

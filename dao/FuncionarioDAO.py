@@ -1,12 +1,12 @@
 import os
 import csv
-from models.Cliente import Cliente
+from models.Funcionario import Funcionario
 
-class ClienteDAO:
-    ARQUIVO = os.path.join("db", "clientes.csv")
+class FuncionarioDAO:
+    ARQUIVO = os.path.join("db", "funcionarios.csv")
 
     @classmethod
-    def findClient(cls, cpf):
+    def findEmploye(cls, cpf):
         with open(cls.ARQUIVO, "r") as file:
             line = 0
             reader = csv.reader(file)
@@ -19,20 +19,20 @@ class ClienteDAO:
     
 
     @classmethod
-    def saveClient(cls, cliente: Cliente):
+    def saveEmploye(cls, employe: Funcionario):
         with open(cls.ARQUIVO, "a", newline='') as file:
             fieldnames=["nome", "cpf", "email", "endereco"]
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             writer.writerow({
-                "nome": cliente.nome,
-                "cpf": cliente.cpf,
-                "email": cliente.email,
-                "endereco": cliente.endereco
+                "nome": employe.nome,
+                "cpf": employe.cpf,
+                "email": employe.email,
+                "endereco": employe.endereco
             })
 
 
     @classmethod
-    def removeClient(cls, index):
+    def removeEmploye(cls, index):
         with open(cls.ARQUIVO, "r") as file:
             reader = csv.reader(file)
             reader = list(reader)
@@ -47,20 +47,20 @@ class ClienteDAO:
 
     
     @classmethod
-    def alterClient(cls, index, client: Cliente):
+    def alterEmploye(cls, index, employe: Funcionario):
         cls.removeClient(index)
-        cls.saveClient(client)
+        cls.saveClient(employe)
 
     
     @classmethod
-    def listClients(cls):
-        clients = []
+    def listEmployes(cls):
+        employes = []
         with open(cls.ARQUIVO, "r") as file:
             fieldnames = ["nome", "cpf", "email", "endereco"]
             reader = csv.DictReader(file, fieldnames=fieldnames)
             next(reader)
             for row in reader:
-                client = f"Nome: {row["nome"]} CPF: {row["cpf"]} email: {row["email"]} endereço: {row["endereco"]}"
-                clients.append(client)
+                employe = f"Nome: {row["nome"]} CPF: {row["cpf"]} email: {row["email"]} endereço: {row["endereco"]}"
+                employes.append(employe)
             
-        return clients
+        return employes
